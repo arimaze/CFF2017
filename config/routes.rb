@@ -56,4 +56,5 @@ Rails.application.routes.draw do
   #   end
  # maplogout '/logout', :controller => 'sessions', :action => 'destroy'
   get '/movies/view_file/:id', to: 'movies#view_file'
+  get '/movies/delete_attachement/:id', to: 'movies#delete_attachment'
 end

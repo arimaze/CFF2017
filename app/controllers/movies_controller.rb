@@ -21,6 +21,21 @@ class MoviesController < ApplicationController
           filename: @movie.filename)
   end
 
+  def delete_attachment
+    @movie = Movie.find(params[:id])
+
+     @movie.filename = nil
+     @movie.content_type = nil
+     @movie.binary_data = nil
+     @movie.save
+
+    respond_to do |format|
+      #format.html { redirect_to action: :edit, notice: 'Attachment successfully removed.' }
+      format.html { redirect_to edit_movie_path, notice: 'Attachment successfully removed.' }
+      format.json { head :no_content }
+    end
+
+  end
   # GET /movies/new
   def new
     @movie = Movie.new
@@ -51,13 +66,6 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
   def update
-		# @movie = Movie.find(params[:format])
-		# @movie.filename = params[:file].original_filename
-		# @movie.content_type= params[:file].content_type
-		# @movie.binary_data= params[:file].read
-		# @movie.update_attributes(movie_params)
-
-
     respond_to do |format|
       if @movie.update(movie_params)
       #  format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }

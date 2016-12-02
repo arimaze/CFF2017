@@ -15,12 +15,20 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+    <% if @movie.filename? %>
+
+        <%= f.text_field :filename, :readonly => true %>
+        <%= link_to 'Delete attachment', :action => :delete_attachment, :id => @movie.id %>
+     <% else %>
+
   <div class="field">
     <%= f.label :Fichier %><br>
     <%= f.file_field :file %>
   </div>
   
   <div class="actions">
+<% end %>
 
     <%= f.submit %>
   </div>
